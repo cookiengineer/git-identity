@@ -8,9 +8,6 @@ SUDO="$(which sudo)";
 
 build_and_install() {
 
-	local os="${1}";
-	local arch="${2}";
-
 	cd "${ROOT}";
 
 	env CGO_ENABLED=0 ${GO} build -o "/tmp/git-identity" "${ROOT}/main.go";
@@ -22,5 +19,5 @@ build_and_install() {
 
 }
 
-build_and_install "linux" "amd64";
+build_and_install;
 

@@ -15,6 +15,17 @@ to get wrong. That's why this tool exists.
 - `git identity show-key <alias>` prints the public key for easy copy/paste into your web app of choice.
 
 
+## Installation
+
+```bash
+# clone the repository
+git clone https://github.com/cookiengineer/git-identity;
+
+# builds and installs the binary to /usr/bin/git-identity
+cd ./git-identity;
+bash install.sh;
+```
+
 ## License
 
 WTFPL
