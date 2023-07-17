@@ -7,14 +7,40 @@ The git command line is pain to use, hard to remember, and easy
 to get wrong. That's why this tool exists.
 
 
-## Features
+## Syntax
 
-- `git identity create <alias>` creates a new identity/alias with username, email address, and SSH key pairs.
-- `git identity import <alias>` creates a new identity/alias from existing global SSH/git config.
-- `git identity config <alias>` configures the current repository to use the given alias.
-- `git identity clone <alias> git@github.com:private/repo.git` uses the given alias SSH key pairs to clone a private repository.
-- `git identity show-key <alias>` prints the public key for easy copy/paste into your web app of choice.
+|:-------------------|:----------------------------------------------------|
+| Action             | Description                                         |
+|:-------------------|:----------------------------------------------------|
+| `create <alias>`   | creates a new alias                                 |
+| `import <alias>`   | imports global git user config as a new alias       |
+| `clone <alias>`    | clones a private repository with SSH key of alias   |
+| `config <alias>`   | modifies current git repository to always use alias |
+| `show`             | prints out available aliases                        |
+| `show-key <alias>` | prints out the public SSH key for given alias       |
+|:-------------------|:----------------------------------------------------|
 
+
+## Examples
+
+```bash
+# import global git/ssh config as new alias
+git identity import cookiengineer;
+
+# create an alias
+git identity create another-alias;
+
+# clone a repo via an aliases' SSH key
+git identity clone cookiengineer git@github.com:cookiengineer/private-repository.git ./private-repo;
+
+# modify alias usage inside a repo
+cd ./private-repo;
+git identity config another-alias;
+git push origin master; # uses another-alias automatically!
+
+# easy copy/paste of public key to web apps
+git identity show-key another-alias;
+```
 
 ## Installation
 
