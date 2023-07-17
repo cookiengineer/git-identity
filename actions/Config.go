@@ -1,5 +1,6 @@
 package actions
 
+import "git-identity/git"
 import "git-identity/profiles"
 import "fmt"
 import "os/exec"
@@ -21,7 +22,7 @@ func Config(alias string) bool {
 			git_folder := strings.TrimSpace(string(buffer1))
 
 			if git_folder != "" {
-				result = PatchGitFolder(git_folder, profile)
+				result = git.PatchGitConfig(git_folder+"/config", profile)
 			}
 
 		} else {

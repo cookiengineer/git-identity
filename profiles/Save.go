@@ -22,11 +22,11 @@ func Save(profile Profile) bool {
 			if err2 == nil {
 				result = true
 			} else {
-				fmt.Println(err2)
+				fmt.Println("Warning: Could not save config to \""+Folder+"/"+profile.User.Name+".json\"!")
 			}
 
 		} else {
-			fmt.Println(err1)
+			fmt.Println("Warning: Could not save config to \""+Folder+"/"+profile.User.Name+".json\"!")
 		}
 
 	}

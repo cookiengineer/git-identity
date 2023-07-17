@@ -12,15 +12,19 @@ func showUsage() {
 	fmt.Println("| Action   | Description")
 	fmt.Println("|:--------:|:-------------------------------------------------:|")
 	fmt.Println("| create   | creates a new Identity/Alias                      |")
+	fmt.Println("| import   | imports global git user config as a new Alias     |")
 	fmt.Println("| clone    | clones a private repository with SSH key of Alias |")
-	fmt.Println("| config   | re-configures current git repository to use Alias |")
+	fmt.Println("| config   | modifies current git repository to use Alias      |")
 	fmt.Println("| show-key | prints out public SSH key of Alias for copy/paste |")
 	fmt.Println("|:--------:|:-------------------------------------------------:|")
 	fmt.Println("")
 	fmt.Println("Examples:")
 	fmt.Println("")
-	fmt.Println("# 1. create a new profile")
+	fmt.Println("# 1.A) create a new alias")
 	fmt.Println("git identity create us3rn4me;")
+	fmt.Println("")
+	fmt.Println("# 1.B) create a new alias from existing global ssh/git config")
+	fmt.Println("git identity import us3rn4me;")
 	fmt.Println("")
 	fmt.Println("# 2. copy/paste the ssh public key to github/gitlab")
 	fmt.Println("git identity show-key us3rn4m3;")
@@ -58,6 +62,25 @@ func main() {
 		if alias != "" {
 
 			result := actions.Create(alias)
+
+			if result == true {
+				os.Exit(0)
+			} else {
+				os.Exit(1)
+			}
+
+		} else {
+
+			showUsage()
+			os.Exit(1)
+
+		}
+
+	} else if action == "import" {
+
+		if alias != "" {
+
+			result := actions.Import(alias)
 
 			if result == true {
 				os.Exit(0)

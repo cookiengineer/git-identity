@@ -1,19 +1,17 @@
-package actions
+package git
 
 import "git-identity/profiles"
 import "os/exec"
 
-func PatchGitFolder(git_folder string, profile profiles.Profile) bool {
+func PatchGitConfig(git_config string, profile profiles.Profile) bool {
 
 	var result bool = false
 
-	if git_folder != "" {
+	if git_config != "" {
 
 		var result_core_sshcommand bool = false
 		var result_user_name bool = false
 		var result_user_email bool = false
-
-		git_config := git_folder+"/config"
 
 		if profile.User.Name != "" {
 
