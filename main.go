@@ -7,23 +7,25 @@ import "fmt"
 
 func showUsage() {
 
-	fmt.Println("git-identity [Action] [Alias] [...]")
+	fmt.Println("Usage: git-identity [Action] [Alias] [...]")
 	fmt.Println("")
-	fmt.Println("| Action   | Description")
-	fmt.Println("|:--------:|:-------------------------------------------------:|")
-	fmt.Println("| create   | creates a new Identity/Alias                      |")
-	fmt.Println("| import   | imports global git user config as a new Alias     |")
-	fmt.Println("| clone    | clones a private repository with SSH key of Alias |")
-	fmt.Println("| config   | modifies current git repository to use Alias      |")
-	fmt.Println("| show-key | prints out public SSH key of Alias for copy/paste |")
-	fmt.Println("|:--------:|:-------------------------------------------------:|")
+	fmt.Println("|:----------------:|:---------------------------------------------------:|")
+	fmt.Println("| Action           | Description                                         |")
+	fmt.Println("|:----------------:|:---------------------------------------------------:|")
+	fmt.Println("| create <alias>   | creates a new alias                                 |")
+	fmt.Println("| import <alias>   | imports global git user config as a new alias       |")
+	fmt.Println("| clone <alias>    | clones a private repository with SSH key of alias   |")
+	fmt.Println("| config <alias>   | modifies current git repository to always use alias |")
+	fmt.Println("| show             | prints out available aliases                        |")
+	fmt.Println("| show-key <alias> | prints out the public SSH key for given alias       |")
+	fmt.Println("|:----------------:|:---------------------------------------------------:|")
 	fmt.Println("")
 	fmt.Println("Examples:")
 	fmt.Println("")
 	fmt.Println("# 1.A) create a new alias")
 	fmt.Println("git identity create us3rn4me;")
 	fmt.Println("")
-	fmt.Println("# 1.B) create a new alias from existing global ssh/git config")
+	fmt.Println("# 1.B) import a new alias from existing global ssh/git config")
 	fmt.Println("git identity import us3rn4me;")
 	fmt.Println("")
 	fmt.Println("# 2. copy/paste the ssh public key to github/gitlab")
@@ -44,7 +46,11 @@ func main() {
 	var action string
 	var arguments []string
 
-	if len(os.Args) == 3 {
+	if len(os.Args) == 2 {
+
+		action = strings.TrimSpace(os.Args[1])
+
+	} else if len(os.Args) == 3 {
 
 		action = strings.TrimSpace(os.Args[1])
 		alias = strings.TrimSpace(os.Args[2])
@@ -131,6 +137,16 @@ func main() {
 			showUsage()
 			os.Exit(1)
 
+		}
+
+	} else if action == "show" {
+
+		result := actions.Show()
+
+		if result == true {
+			os.Exit(0)
+		} else {
+			os.Exit(1)
 		}
 
 	} else if action == "showkey" || action == "show-key" {
