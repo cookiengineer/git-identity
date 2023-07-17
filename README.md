@@ -40,6 +40,7 @@ git push origin master; # uses another-alias automatically!
 git identity show-key another-alias;
 ```
 
+
 ## Installation
 
 ```bash
@@ -50,6 +51,15 @@ git clone https://github.com/cookiengineer/git-identity;
 cd ./git-identity;
 bash install.sh;
 ```
+
+
+## Filesystem Backup / Config Folders
+
+- The compiled [main.go](/main.go) binary has to be installed as `/usr/bin/git-identity`
+- `$XDG_CONFIG_HOME/git-identity` is the preferred config folder
+- `$HOME/.config/git-identity` is the first fallback config folder
+- `/home/$USER/.config/git-identity` is the second fallback config folder
+
 
 ## License
 

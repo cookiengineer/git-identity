@@ -13,23 +13,17 @@ func init() {
 	var folder string
 
 	xdg_config := os.Getenv("XDG_CONFIG_HOME")
+	home := os.Getenv("HOME")
+	user := os.Getenv("USER")
 
 	if xdg_config != "" {
-
 		folder = xdg_config + "/git-identity"
-
-	} else {
-
-		home := os.Getenv("HOME")
-		user := os.Getenv("USER")
-
-		if home != "" {
-			folder = home + "/.config/git-identity"
-		} else if user != "" {
-			folder = "/home/" + user + "/.config/git-identity"
-		}
-
+	} else if home != "" {
+		folder = home + "/.config/git-identity"
+	} else if user != "" {
+		folder = "/home/" + user + "/.config/git-identity"
 	}
+
 
 	if folder != "" {
 
