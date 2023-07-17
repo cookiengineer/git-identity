@@ -9,7 +9,6 @@ to get wrong. That's why this tool exists.
 
 ## Syntax
 
-|:-------------------|:----------------------------------------------------|
 | Action             | Description                                         |
 |:-------------------|:----------------------------------------------------|
 | `create <alias>`   | creates a new alias                                 |
@@ -18,7 +17,6 @@ to get wrong. That's why this tool exists.
 | `config <alias>`   | modifies current git repository to always use alias |
 | `show`             | prints out available aliases                        |
 | `show-key <alias>` | prints out the public SSH key for given alias       |
-|:-------------------|:----------------------------------------------------|
 
 
 ## Examples
