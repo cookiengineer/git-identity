@@ -29,7 +29,7 @@ func Create(alias string) bool {
 			profile.User.Email = email
 			profile.User.UseConfigOnly = true
 
-			result = profiles.Save(profile)
+			result = profiles.Save(alias, profile)
 
 		} else {
 

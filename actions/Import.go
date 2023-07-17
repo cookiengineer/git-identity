@@ -102,7 +102,7 @@ func Import(alias string) bool {
 				profile.User.Email = email
 				profile.User.UseConfigOnly = true
 
-				result_git = profiles.Save(profile)
+				result_git = profiles.Save(alias, profile)
 
 			}
 
